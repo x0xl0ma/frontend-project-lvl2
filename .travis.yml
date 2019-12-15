@@ -1,7 +1,9 @@
 language: node_js
 node_js:
   - node
-
+env:
+  global:
+    - CC_TEST_REPORTER_ID=052e1946f12f42ad684d9726ae7bf81626bf975813e2b4c90e090ac3bd0c171a
 script:
   - make lint
   - make test
