@@ -6,3 +6,6 @@ start:
 
 publish:
 	npm publish --dry-run
+
+test:
+	npm test
