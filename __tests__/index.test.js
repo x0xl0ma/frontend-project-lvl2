@@ -10,6 +10,6 @@ describe('genDiff', () => {
     const pathToFile2 = path.join(__dirname, '/__fixtures__/after.json');
     const received = genDiff(pathToFile1, pathToFile2);
     const expected = fs.readFileSync(pathToResult, 'utf-8');
-    expect(received).toBe(expected);
+    expect(received).toEqual(expected);
   });
 });

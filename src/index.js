@@ -12,16 +12,16 @@ const genDiff = (pathToFile1, pathToFile2) => {
 
   const result = keys.map((key) => {
     if (!has(obj2, key)) {
-      return (` - ${key}: ${obj1[key]}\n`);
+      return (` - ${key}: ${obj1[key]}`);
     }
     if (!has(obj1, key)) {
-      return (` + ${key}: ${obj2[key]}\n`);
+      return (` + ${key}: ${obj2[key]}`);
     }
     if (obj1[key] !== obj2[key]) {
-      return (` - ${key}: ${obj1[key]}\n + ${key}: ${obj2[key]}\n`);
+      return (` - ${key}: ${obj1[key]}\n + ${key}: ${obj2[key]}`);
     }
-    return (`   ${key}: ${obj2[key]}\n`);
-  }).join('');
+    return (`   ${key}: ${obj2[key]}`);
+  }).join('\n');
   return `{\n${result}\n}`;
 };
 export default genDiff;
