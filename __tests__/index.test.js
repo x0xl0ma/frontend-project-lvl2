@@ -13,3 +13,14 @@ describe('genDiff', () => {
     expect(received).toEqual(expected);
   });
 });
+
+describe('genDiff', () => {
+  test('get the difference', () => {
+    const pathToResult = path.join(__dirname, '/__fixtures__/result');
+    const pathToFile1 = path.join(__dirname, '/__fixtures__/before.yaml');
+    const pathToFile2 = path.join(__dirname, '/__fixtures__/after.yaml');
+    const received = genDiff(pathToFile1, pathToFile2);
+    const expected = fs.readFileSync(pathToResult, 'utf-8');
+    expect(received).toEqual(expected);
+  });
+});
