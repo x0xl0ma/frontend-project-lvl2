@@ -10,5 +10,8 @@ publish:
 test:
 	npm test
 
-rec:
-	asciinema rec
+test-watch:
+	npm run  test -- --watch
+
+test-coverage:
+	npm test -- --coverage
