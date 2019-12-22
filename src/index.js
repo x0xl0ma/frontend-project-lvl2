@@ -1,12 +1,17 @@
 import { has, union } from 'lodash';
 import fs from 'fs';
+import path from 'path';
+import parse from './parsers';
 
 const genDiff = (pathToFile1, pathToFile2) => {
-  const getData1 = fs.readFileSync(pathToFile1, 'utf-8');
-  const getData2 = fs.readFileSync(pathToFile2, 'utf-8');
+  const data1 = fs.readFileSync(pathToFile1, 'utf-8');
+  const data2 = fs.readFileSync(pathToFile2, 'utf-8');
 
-  const obj1 = JSON.parse(getData1);
-  const obj2 = JSON.parse(getData2);
+  const type1 = path.extname(pathToFile1);
+  const type2 = path.extname(pathToFile2);
+
+  const obj1 = parse(data1, type1);
+  const obj2 = parse(data2, type2);
 
   const keys = union(Object.keys(obj1), Object.keys(obj2)).sort();
 
