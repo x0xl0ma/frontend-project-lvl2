@@ -6,6 +6,4 @@ const parsers = {
 };
 
 const parse = (data, type) => parsers[type](data);
-
 export default parse;
-

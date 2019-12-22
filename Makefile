@@ -9,3 +9,6 @@ publish:
 
 test:
 	npm test
+
+rec:
+	asciinema rec
