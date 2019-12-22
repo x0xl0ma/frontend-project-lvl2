@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import genDiff from '../src';
 
-describe('genDiff', () => {
+describe('json', () => {
   test('get the difference', () => {
     const pathToResult = path.join(__dirname, '/__fixtures__/result');
     const pathToFile1 = path.join(__dirname, '/__fixtures__/before.json');
@@ -14,7 +14,7 @@ describe('genDiff', () => {
   });
 });
 
-describe('genDiff', () => {
+describe('yaml', () => {
   test('get the difference', () => {
     const pathToResult = path.join(__dirname, '/__fixtures__/result');
     const pathToFile1 = path.join(__dirname, '/__fixtures__/before.yaml');
