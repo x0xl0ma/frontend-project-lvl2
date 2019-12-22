@@ -4,6 +4,10 @@ Difference Generator
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/51e812f8880da541b7be/maintainability)](https://codeclimate.com/github/x0xl0ma/frontend-project-lvl1/maintainability)
 
+
+[![Test Coverage](https://api.codeclimate.com/v1/badges/51e812f8880da541b7be/test_coverage)](https://codeclimate.com/github/x0xl0ma/frontend-project-lvl1/test_coverage)
+
+
 Install 
 
 [![asciicast](https://asciinema.org/a/6OWMhZV9qWHdv6KGK9RcyN26F.svg)](https://asciinema.org/a/6OWMhZV9qWHdv6KGK9RcyN26F)
