@@ -21,6 +21,9 @@ YAML
 
 [![asciicast](https://asciinema.org/a/Neo8HuU7mMcI08FOydDxqLexm.svg)](https://asciinema.org/a/Neo8HuU7mMcI08FOydDxqLexm)
 
+INI
+
+[![asciicast](https://asciinema.org/a/0UuBDycSisgHaDC7ePpaI9cDI.svg)](https://asciinema.org/a/0UuBDycSisgHaDC7ePpaI9cDI)
 
 
 
