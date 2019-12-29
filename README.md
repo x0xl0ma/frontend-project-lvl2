@@ -25,5 +25,9 @@ INI
 
 [![asciicast](https://asciinema.org/a/0UuBDycSisgHaDC7ePpaI9cDI.svg)](https://asciinema.org/a/0UuBDycSisgHaDC7ePpaI9cDI)
 
+TEST
+
+[![asciicast](https://asciinema.org/a/R3I03rdN2CqveiVfNbJVTiaiN.svg)](https://asciinema.org/a/R3I03rdN2CqveiVfNbJVTiaiN)
+
 
 
