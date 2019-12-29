@@ -14,4 +14,3 @@ test.each([
   const expected = fs.readFileSync(pathToResult, 'utf-8');
   expect(genDiff(pathToFile1, pathToFile2)).toEqual(expected);
 });
-
