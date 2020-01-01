@@ -56,8 +56,8 @@ const getDataFromType = {
   removed: (node) => ` - ${node.key}: ${node.value}`,
   added: (node) => ` + ${node.key}: ${node.value}`,
   changed: (node) => ` - ${node.key}: ${node.valueBefore}\n + ${node.key}: ${node.valueAfter}`,
-  unchanged: (node) => `  ${node.key}: ${node.value}`,
-  nested: (node) => mapping(node),
+  unchanged: (node) => `   ${node.key}: ${node.value}`,
+  nested: (node) => `${node.key}: {\n ${mapping(node.children)} \n}`,
 };
 
 const mapping = (tree) => tree.map((node) => getDataFromType[node.type](node)).join('\n');
