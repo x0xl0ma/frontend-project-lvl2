@@ -51,13 +51,27 @@ const treeBuilder = (obj1, obj2) => {
   });
   return tree;
 };
+const stringify = (data) => {
+  if(!(data instanceof Object)) {
+    return data;
+  }
+  if (data instanceof Object) {
+    const entries = Object.entries(data);
+    for (const [key, value] of entries) {
+      return `{\n${key}: ${value}\n} `;
+    }
+  }
+};
+
+const makeSpase = (depth) => '  '.repeat(depth);
+
 
 const getDataFromType = {
-  removed: (node) => ` - ${node.key}: ${node.value}`,
-  added: (node) => ` + ${node.key}: ${node.value}`,
-  changed: (node) => ` - ${node.key}: ${node.valueBefore}\n + ${node.key}: ${node.valueAfter}`,
-  unchanged: (node) => `   ${node.key}: ${node.value}`,
-  nested: (node) => `${node.key}: {\n ${mapping(node.children)} \n}`,
+  removed: (node) => ` - ${node.key}: ${stringify(node.value)}`,
+  added: (node) => ` + ${node.key}: ${stringify(node.value)}`,
+  changed: (node) => ` - ${node.key}: ${stringify(node.valueBefore)}\n + ${node.key}: ${stringify(node.valueAfter)}`,
+  unchanged: (node) => `   ${node.key}: ${stringify(node.value)}`,
+  nested: (node) => `${node.key}: {\n${mapping(node.children)} \n}`,
 };
 
 const mapping = (tree) => tree.map((node) => getDataFromType[node.type](node)).join('\n');
