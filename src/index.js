@@ -55,16 +55,13 @@ const treeBuilder = (obj1, obj2) => {
 const makeSpace = (level) => '  '.repeat(level);
 
 const stringify = (data, depth) => {
-  const firstSpace = makeSpace(depth + 2);
-  const lastSpace = makeSpace(depth + 1);
-  
-  if(!(data instanceof Object)) {
+  if (!(data instanceof Object)) {
     return data;
   }
-  if (data instanceof Object) {
-    const entries = Object.entries(data);
-    return `{\n${entries.map(([key, value]) => `${firstSpace}  ${key}: ${value}`).join('\n')}\n${lastSpace}}`;
-  }
+  const firstSpace = makeSpace(depth + 2);
+  const lastSpace = makeSpace(depth + 1);
+  const entries = Object.entries(data);
+  return `{\n${entries.map(([key, value]) => `${firstSpace}  ${key}: ${value}`).join('\n')}\n${lastSpace}}`;
 };
 
 const getDataFromType = {
@@ -82,6 +79,6 @@ const genDiff = (pathToFile1, pathToFile2) => {
   const object2 = parsing(pathToFile2);
   const ast = treeBuilder(object1, object2);
   const mappedAst = mapping(ast);
-  return mappedAst;
+  return `{\n${mappedAst}\n}`;
 };
 export default genDiff;
