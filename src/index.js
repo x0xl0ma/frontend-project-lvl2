@@ -52,27 +52,27 @@ const treeBuilder = (obj1, obj2) => {
   return tree;
 };
 
-const makeSpase = (level) => '  '.repeat(level);
+const makeSpace = (level) => '  '.repeat(level);
 
 const stringify = (data, depth) => {
-  const firstSpase = makeSpase(depth + 2);
-  const lastSpase = makeSpase(depth + 1);
+  const firstSpace = makeSpace(depth + 2);
+  const lastSpace = makeSpace(depth + 1);
   
   if(!(data instanceof Object)) {
     return data;
   }
   if (data instanceof Object) {
     const entries = Object.entries(data);
-    return `{\n${entries.map(([key, value]) => `${firstSpase}  ${key}: ${value}`).join('\n')}\n${lastSpase}}`;
+    return `{\n${entries.map(([key, value]) => `${firstSpace}  ${key}: ${value}`).join('\n')}\n${lastSpace}}`;
   }
 };
 
 const getDataFromType = {
-  removed: (node) => `${makeSpase(1)}- ${node.key}: ${stringify(node.value)}${makeSpase(1)}`,
-  added: (node) => `${makeSpase(1)}+ ${node.key}: ${stringify(node.value)}${makeSpase(1)}`,
-  changed: (node) => `${makeSpase(1)}- ${node.key}: ${stringify(node.valueBefore)}\n${makeSpase(1)}+ ${node.key}: ${stringify(node.valueAfter)}${makeSpase(1)}`,
-  unchanged: (node) => `${makeSpase(1)}  ${node.key}: ${stringify(node.value)}${makeSpase(1)}`,
-  nested: (node) => `${makeSpase(1)}${node.key}: {\n${mapping(node.children)}${makeSpase(1)} \n}`,
+  removed: (node) => `${makeSpace(1)}- ${node.key}: ${stringify(node.value)}${makeSpace(1)}`,
+  added: (node) => `${makeSpace(1)}+ ${node.key}: ${stringify(node.value)}${makeSpace(1)}`,
+  changed: (node) => `${makeSpace(1)}- ${node.key}: ${stringify(node.valueBefore)}\n${makeSpace(1)}+ ${node.key}: ${stringify(node.valueAfter)}${makeSpace(1)}`,
+  unchanged: (node) => `${makeSpace(1)}  ${node.key}: ${stringify(node.value)}${makeSpace(1)}`,
+  nested: (node) => `${makeSpace(1)}${node.key}: {\n${mapping(node.children)}${makeSpace(2)} \n}`,
 };
 
 const mapping = (tree) => tree.map((node) => getDataFromType[node.type](node)).join('\n');
