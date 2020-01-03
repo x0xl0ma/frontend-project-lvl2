@@ -58,18 +58,18 @@ const stringify = (data, depth = 1) => {
   if (!(data instanceof Object)) {
     return data;
   }
-  const firstSpace = makeSpace(depth + 2);
-  const lastSpace = makeSpace(depth + 1);
+  const firstSpace = makeSpace(depth + 3);
+  const lastSpace = makeSpace(depth + 2);
   const entries = Object.entries(data);
   return `{\n${entries.map(([key, value]) => `${firstSpace}  ${key}: ${value}`).join('\n')}\n${lastSpace}}`;
 };
 
 const getDataFromType = {
-  removed: (node) => `${makeSpace(1)}- ${node.key}: ${stringify(node.value)}${makeSpace(2)}`,
-  added: (node) => `${makeSpace(1)}+ ${node.key}: ${stringify(node.value)}${makeSpace(2)}`,
-  changed: (node) => `${makeSpace(1)}- ${node.key}: ${stringify(node.valueBefore)}\n${makeSpace(1)}+ ${node.key}: ${stringify(node.valueAfter)}${makeSpace(2)}`,
-  unchanged: (node) => `${makeSpace(1)}  ${node.key}: ${stringify(node.value)}${makeSpace(2)}`,
-  nested: (node) => `${makeSpace(1)}${node.key}: {\n${mapping(node.children)}${makeSpace(2)} \n}`,
+  removed: (node) => `${makeSpace(2)}- ${node.key}: ${stringify(node.value)}${makeSpace(2)}`,
+  added: (node) => `${makeSpace(2)}+ ${node.key}: ${stringify(node.value)}${makeSpace(2)}`,
+  changed: (node) => `${makeSpace(2)}- ${node.key}: ${stringify(node.valueBefore)}\n${makeSpace(2)}+ ${node.key}: ${stringify(node.valueAfter)}${makeSpace(2)}`,
+  unchanged: (node) => `${makeSpace(2)}  ${node.key}: ${stringify(node.value)}${makeSpace(2)}`,
+  nested: (node) => `${makeSpace(1)}${node.key}: {\n${mapping(node.children)}\n${makeSpace(1)}}`,
 };
 
 const mapping = (tree) => tree.map((node) => getDataFromType[node.type](node)).join('\n');
