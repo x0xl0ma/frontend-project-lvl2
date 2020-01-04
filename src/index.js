@@ -54,48 +54,43 @@ const treeBuilder = (obj1, obj2) => {
 
 const makeSpace = (level) => '  '.repeat(level);
 
-//
-
-const stringify = (data, depth = 1) => {
+const stringify = (data, depth) => {
   if (!(data instanceof Object)) {
     return `${data}`;
   }
-  const firstSpace = makeSpace(depth + 3);
-  const lastSpace = makeSpace(depth + 2);
   const entries = Object.entries(data);
-  return `{\n${entries.map(([key, value]) => `${firstSpace}  ${key}: ${value}`).join('\n')}\n${lastSpace}}`;
+  return `{\n  ${entries.map(([key, value]) => `${makeSpace(depth + 2)}${key}: ${value}`).join('\n')}\n${makeSpace(depth + 1)}}`;
 };
-
 const getDataFromType = {
-  removed: (node) => {
+  removed: (node, depth) => {
     const { key, value } = node;
-    return `${makeSpace(2)}- ${key}: ${stringify(value)}${makeSpace(1)}`;
+    return `${makeSpace(depth)}- ${key}: ${stringify(value, depth)}`;
   },
-  added: (node) => {
+  added: (node, depth) => {
     const { key, value } = node;
-    return `${makeSpace(2)}+ ${key}: ${stringify(value)}${makeSpace(1)}`;
+    return `${makeSpace(depth)}+ ${key}: ${stringify(value, depth)}`;
   },
-  changed: (node) => {
+  changed: (node, depth) => {
     const { key, valueBefore, valueAfter } = node;
-    return `${makeSpace(2)}- ${key}: ${stringify(valueBefore)}\n${makeSpace(2)}+ ${key}: ${stringify(valueAfter)}${makeSpace(1)}`;
+    return `${makeSpace(depth)}- ${key}: ${stringify(valueBefore, depth)}\n${makeSpace(depth)}+ ${key}: ${stringify(valueAfter, depth)}`;
   },
-  unchanged: (node) => {
+  unchanged: (node, depth) => {
     const { key, value } = node;
-    return `${makeSpace(2)}  ${key}: ${stringify(value)}${makeSpace(1)}`;
+    return `${makeSpace(depth)}  ${key}: ${stringify(value, depth)}`;
   },
-  nested: (node) => {
+  nested: (node, depth, render) => {
     const { key, children } = node;
-    return `${makeSpace(1)}${key}: {\n${render(children, makeSpace(2))}\n${makeSpace(1)}}`;
+    return `${makeSpace(depth)}  ${key}: {\n${render(children, depth + 2)}\n${makeSpace(depth + 1)}}`;
   },
 };
 
-const render = (tree) => tree.map((node) => getDataFromType[node.type](node)).join('\n');
+const render = (tree, depth = 1) => tree.map((node) => getDataFromType[node.type](node, depth, render)).join('\n');
 
 const genDiff = (pathToFile1, pathToFile2) => {
   const object1 = parsing(pathToFile1);
   const object2 = parsing(pathToFile2);
   const ast = treeBuilder(object1, object2);
-  const mappedAst = render(ast);
-  return `{\n${mappedAst}\n}`;
+  const renderedAst = render(ast);
+  return `{\n${renderedAst}\n}`;
 };
 export default genDiff;
