@@ -24,6 +24,6 @@ const actions = {
   },
 };
 
-const render = (tree, acc) => tree.map((node) => actions[node.type](node, acc, render)).join('\n');
+const render = (tree, acc = '') => tree.map((node) => actions[node.type](node, acc, render)).join('\n');
 
 export default render;
