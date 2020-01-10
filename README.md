@@ -11,7 +11,7 @@
 ## Installing package
 
 ```
-nake instal
+make install
 
 ```
 
