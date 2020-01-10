@@ -2,7 +2,7 @@ const makeSpace = (level) => '  '.repeat(level);
 
 const stringify = (data, depth) => {
   if (!(data instanceof Object)) {
-    return `${data}`;
+    return data;
   }
   const entries = Object.entries(data);
   return `{\n  ${entries.map(([key, value]) => `${makeSpace(depth + 2)}${key}: ${value}`).join('\n')}\n${makeSpace(depth + 1)}}`;
@@ -31,9 +31,6 @@ const actions = {
   },
 };
 
-const render = (tree, depth = 1) => {
-  const result = tree.map((node) => actions[node.type](node, depth, render)).join('\n');
-  return `{\n${result}\n}`;
-};
+const render = (tree, depth = 1) => tree.map((node) => actions[node.type](node, depth, render)).join('\n');
 
-export default render;
+export default (tree) => `{\n${render(tree)}\n}`;
