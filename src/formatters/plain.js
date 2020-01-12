@@ -17,13 +17,13 @@ const actions = {
     const { key } = node;
     return `Property '${acc}${key}' was not changed`;
   },
-  nested: (node, acc, render) => {
+  nested: (node, acc, rendering) => {
     const { key, children } = node;
     const path = `${acc}${key}.`;
-    return render(children, path);
+    return rendering(children, path);
   },
 };
 
-const render = (tree, acc = '') => tree.map((node) => actions[node.type](node, acc, render)).join('\n');
+const rendering = (tree, acc = '') => tree.map((node) => actions[node.type](node, acc, rendering)).join('\n');
 
-export default render;
+export default rendering;

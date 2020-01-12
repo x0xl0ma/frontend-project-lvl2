@@ -25,12 +25,12 @@ const actions = {
     const { key, value } = node;
     return `${makeSpace(depth)}  ${key}: ${stringify(value, depth)}`;
   },
-  nested: (node, depth, render) => {
+  nested: (node, depth, rendering) => {
     const { key, children } = node;
-    return `${makeSpace(depth)}  ${key}: {\n${render(children, depth + 2)}\n${makeSpace(depth + 1)}}`;
+    return `${makeSpace(depth)}  ${key}: {\n${rendering(children, depth + 2)}\n${makeSpace(depth + 1)}}`;
   },
 };
 
-const render = (tree, depth = 1) => tree.map((node) => actions[node.type](node, depth, render)).join('\n');
+const rendering = (tree, depth = 1) => tree.map((node) => actions[node.type](node, depth, rendering)).join('\n');
 
-export default (tree) => `{\n${render(tree)}\n}`;
+export default (tree) => `{\n${rendering(tree)}\n}`;
