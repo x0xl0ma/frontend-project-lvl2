@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import parse from './parsers';
-import rendering from './formatters/';
+import rendering from './formatters';
 import treeBuilder from './treeBuilder';
 
 const genDiff = (pathToFile1, pathToFile2, format) => {
